@@ -6,7 +6,7 @@
 
 ---
 
-### API 요약
+### 폴더구조
 ```mermaid
 graph LR
     A["2025_ktb/web/backend"] --> B["9th_week_251110"]
@@ -35,3 +35,4 @@ graph LR
     C3 --> F2["reply_router.py"]
     C3 --> F3["user_router.py"]
     C3 --> F4["misc_router.py"]
+```
