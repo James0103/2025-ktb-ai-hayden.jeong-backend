@@ -1,0 +1,8 @@
+venv
+.vscode
+/lecture
+/lecture/*
+/models
+/models/*
+/models/**
+10th_week_251118/model/gpt2-small
