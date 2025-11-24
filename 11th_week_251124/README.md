@@ -5,11 +5,8 @@
 ---
 
 ### 과제 설명
-사용 모델 : GPT2-Small(Pre-trained Only)
-POST 요청으로 간단한 프롬프트와 temperature를 보내면 모델이 응답을 보내주는 단순한 구조
 
 ### 추후 개선사항
-1. Fine-Tuning 모델로 변경
-2. 모델 사이즈 축소(양자화 진행)
+
 
 
