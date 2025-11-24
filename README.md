@@ -1,6 +1,17 @@
 # 카테부 3기 AI 실무개발
 ## 웹 개발 백엔드 레포지토리
 
+### 11주차 과제
+📦 11th_week_251124<br>
+ ┣ 📂 controller -> db 호출 함수 컨트롤러<br>
+ ┣ 📂 db -> 로컬 db 저장 폴더<br>
+ ┣ 📂 json_data -> 기존 JSON 파일들<br>
+ ┣ 📂 models -> model schema 및 db 호출 함수<br>
+ ┣ 📂 router -> api router<br>
+ ┣ 📜 main.py -> 메인 파일<br>
+ ┣ 📜 make_db.py -> 로컬 DB 생성용 파일<br>
+ ┗ 📜 README.md -> 11주차 과제 리드미<br>
+
 ### 10주차 과제
 📦 10th_week_251118<br>
  ┗ 📜 README.md -> 10주차 과제 리드미
