@@ -1,0 +1,15 @@
+{
+  "name": "no_9_response",
+  "version": "1.0.0",
+  "description": "12주차 과제 9번 : response.send() vs response.json() vs response.end() 공부하고 적용해보세요.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

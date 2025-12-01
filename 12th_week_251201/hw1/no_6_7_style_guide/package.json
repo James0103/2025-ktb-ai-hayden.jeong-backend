@@ -1,0 +1,26 @@
+{
+  "name": "no_6_7_style_guide",
+  "version": "1.0.0",
+  "description": "12주차 과제 6번/7번",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:index": "eslint --fix index.js",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-prettier": "^5.5.4",
+    "express": "^5.1.0",
+    "prettier": "^3.7.3"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^10.1.8"
+  }
+}

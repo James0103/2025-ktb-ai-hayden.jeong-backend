@@ -1,0 +1,16 @@
+{
+  "name": "no_29_34_frontend",
+  "version": "1.0.0",
+  "description": "12주차 1번 과제 : 미니퀘스트_frontend 설계",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js --watch ./ static/*",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

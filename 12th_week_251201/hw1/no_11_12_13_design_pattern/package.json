@@ -1,0 +1,19 @@
+{
+  "name": "no_11_12_13_design_pattern",
+  "version": "1.0.0",
+  "description": "12주차 과제_미니퀘스트 : 디자인 패턴",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-timeout": "^1.9.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "helmet-csp": "^4.0.0"
+  }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <title>커뮤니티 샘플</title>
+  <link rel="favicon" href="./favicon.ico" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>커뮤니티 샘플 페이지</header>
+    <main id="main-container">
+      <div id="progress">
+        <pre class="progress-text">데이터를 불러오는 중입니다<br>잠시만 기다려주세요</pre>
+        <!-- <div class="spinner"></div> -->
+        <div id="lottie-progress"></div>
+      </div>
+      <div id="post-data">
+        포스트 로딩 완료
+      </div>
+    </main>
+    <footer>2025 KTB 3기 샘플 테스트</footer>
+  </div>
+  <script>
+    var animation = lottie.loadAnimation({
+      container: document.getElementById('lottie-progress'), // 애니메이션을 넣을 위치
+      renderer: 'svg', // 렌더링 방식 ('svg', 'canvas', 'html' 중 선택)
+      loop: true, // 반복 재생 여부
+      autoplay: true, // 자동 재생 여부
+      path: 'loading.json' // Lottie 파일의 경로
+    });
+    // 더미 데이터 호출
+    async function getDummyData() {
+      return new Promise(async (res, rej) => {
+        const dummies = []
+        for(let i = 1; i < 11; i++) {
+          const resp = await fetch(`https://jsonplaceholder.typicode.com/posts/${i}`)
+          const jsonData = await resp.json()
+          dummies.push(jsonData)
+        }
+        res(dummies)
+      })
+    }
+
+    // 데이터 이동
+    function movePost(userId) {
+      window.location.href = `post?postId=${userId}`
+    }
+
+    window.addEventListener("load", async () => {
+      const container = document.getElementById('main-container');
+      const progress = document.getElementById('progress');
+      const postData = document.getElementById('post-data');
+      postData.style.display = 'none'
+      const resp = await getDummyData()
+      let html = '';
+
+      for (const item of resp) {
+        html += `
+          <div class="post-item" onclick="movePost(${item.id})">
+            <div class="post-id">user-id: ${item.userId}</div>
+            <div class="post-title">${item.title}</div>
+          </div>
+        `;
+      }
+      postData.innerHTML = html;
+
+      progress.style.display = 'none'
+      postData.style.display = 'flex'
+    })
+  </script>
+</body>
