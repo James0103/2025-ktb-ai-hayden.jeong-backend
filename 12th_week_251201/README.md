@@ -1,7 +1,7 @@
 <br>
 <p align="center">
     <img src="https://grm-project-template-bucket.s3.ap-northeast-2.amazonaws.com/organization/kakao-tech-bootcamp/logo/KTB_logo_screen.png" width="138px" height="50px" title="ktb_Logo" 
-    style="margin:0; padding: 0;"
+    style="margin:0; padding: 0; background-color: white; padding: 10px; border-radius: 6px"
     />
 </p>
 <p align="center" style="font-size: 20px; font-weight: bold; margin:0; padding: 0;">
