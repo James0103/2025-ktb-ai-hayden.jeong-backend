@@ -1,11 +1,9 @@
 <div align="center">
-    <image src="KTB_logo_screen.png" width="120" height="66"
-        style="border-radius: 8px;"
-    />
+    <image src="KTB_logo_screen.png" width="120" height="66"/>
 </div>
 
-<div align="center" style="margin-top: 8px;">
-    <div style="font-size: 20px; font-weight: bold;">개인프로젝트(커뮤니티 사이트 구축)</div>
+<div align="center">
+    <h3>개인프로젝트(커뮤니티 사이트 구축)</h3>
 </div>
 
 ### 기술 스택
