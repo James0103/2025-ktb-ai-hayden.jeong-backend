@@ -1,0 +1,11 @@
+fastapi==0.123.0
+uvicorn==0.38.0
+sqlalchemy==2.0.44
+psycopg2-binary==2.9.11
+python-dotenv==1.2.1
+passlib==1.7.4
+bcrypt==3.2.2
+boto3==1.42.4
+python-multipart==0.0.20
+google-genai==1.53.0
+pydantic[email]
