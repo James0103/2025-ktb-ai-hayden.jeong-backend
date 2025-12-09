@@ -47,3 +47,10 @@ class RelayStoryResponse(BaseModel):
 
   class Config:
     from_attributes = True
+
+class EndingContentGenerate(BaseModel):
+  title: str = Field(..., min_length=1)
+  first_contents: str = Field(..., min_length=1)
+  contents: str = Field(..., min_length=1)
+  genre: str = Field(..., min_length=1)
+  

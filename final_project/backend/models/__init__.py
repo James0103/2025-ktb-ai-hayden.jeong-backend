@@ -4,7 +4,7 @@ Pydantic models for API request/response validation
 
 from .user import User, UserCreate, UserLogin, UserResponse
 from .post import Post, PostCreate, PostUpdate, PostResponse, MainStoryGenerate, RelayStoryGenerate
-from .relay_story import RelayStory, RelayStoryCreate, RelayStoryUpdate, RelayStoryResponse
+from .relay_story import RelayStory, RelayStoryCreate, RelayStoryUpdate, RelayStoryResponse, EndingContentGenerate
 
 __all__ = [
     "User",
@@ -21,4 +21,5 @@ __all__ = [
     "RelayStoryCreate",
     "RelayStoryUpdate",
     "RelayStoryResponse",
+    "EndingContentGenerate",
 ]

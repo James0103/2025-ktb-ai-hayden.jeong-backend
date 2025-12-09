@@ -64,7 +64,7 @@
           <div class="content-header">
             <label for="content">내용</label>
             <button type="button" class="btn-ai-generate" @click="handleAIGenerate">
-              AI로 생성하기
+              AI로 초안쓰기
             </button>
           </div>
           <textarea

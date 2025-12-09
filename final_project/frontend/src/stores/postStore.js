@@ -255,9 +255,42 @@ export const usePostStore = defineStore('post', () => {
     }
   }
 
-  // const generateEndingContent = async (post) => {
+  const generateEndingContent = async (post) => {
+    let prevContents = ""
 
-  // }
+    try {
+      post.comments.length > 0 ?
+      prevContents = joinArrayToString(post.comments.map((comment, index) => `${index + 1} : ${comment.content}`)) : ""
+
+      if (prevContents == "") throw new Error('이전 내용이 없습니다.')
+
+      const endingInfo = {
+        title: post.title,
+        first_contents: post.content,
+        contents: prevContents,
+        genre: post.genre
+      }
+
+      const response = await fetch(`${API_BASE_URL}/api/posts/generate-ending-content`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(endingInfo),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.detail || 'AI 생성 실패')
+      }
+
+      const result = await response.json()
+      return result
+    } catch (error) {
+      console.error('Failed to generate AI content:', error)
+      throw error
+    }
+  }
 
   return {
     posts,
@@ -271,6 +304,7 @@ export const usePostStore = defineStore('post', () => {
     addComment,
     deleteComment,
     generateMainStory,
-    generateRelayStory
+    generateRelayStory,
+    generateEndingContent
   }
 })

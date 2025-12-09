@@ -5,7 +5,7 @@ Handles post management endpoints (CRUD operations for relay stories)
 
 from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List
-from models import PostCreate, PostUpdate, PostResponse, MainStoryGenerate, RelayStoryGenerate
+from models import PostCreate, PostUpdate, PostResponse, MainStoryGenerate, RelayStoryGenerate, EndingContentGenerate
 from controllers.post_controller import PostController 
 from controllers.ai_story_controller import AIController
 from db.session import get_db
@@ -90,3 +90,6 @@ async def generate_main_story(story_info: MainStoryGenerate):
 async def generate_relay_story(story_info: RelayStoryGenerate):
   return await AIController.generate_relay_story(story_info)
 
+@router.post("/generate-ending-content")
+async def generate_ending_content(ending_info: EndingContentGenerate):
+  return await AIController.generate_ending_content(ending_info)

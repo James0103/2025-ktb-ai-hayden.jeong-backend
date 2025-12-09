@@ -43,9 +43,9 @@
               <span class="story-date">{{ formatDate(comment.created_at) }}</span>
             </div>
             <div v-if="userStore.user?.id === comment.user_id" class="story-actions">
-              <button @click="handleEditComment(comment)" class="btn-small">
+              <!-- <button @click="handleEditComment(comment)" class="btn-small">
                 수정
-              </button>
+              </button> -->
               <button @click="handleDeleteComment(comment.id)" class="btn-small">
                 삭제
               </button>
@@ -53,13 +53,13 @@
           </div>
         </div>
         <div class="divider"></div>
-        <div class="stories-header">
+        <div v-if="getRemainingStories() > 0" class="stories-header">
           <h2>남은 이야기 ({{ getRemainingStories() }})</h2>
           <button @click="handleGenerateAI" class="btn-ai-generate-header">
-            AI로 생성하기
+            AI로 초안쓰기
           </button>
         </div>
-        <div class="add-next-story">
+        <div v-if="getRemainingStories() > 0" class="add-next-story">
           <textarea
             v-model="newStory"
             placeholder="다음 이야기를 작성하세요"
@@ -68,6 +68,39 @@
           <button @click="handleAddComment" class="btn-primary">
             이야기 등록
           </button>
+        </div>
+        <div v-else class="no-remaining-stories">
+          <p>이야기가 완성되었습니다 :)</p>
+          <button @click="showFullStoryModal = true" class="btn-view-all">
+            전체 이야기 보기
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 전체 이야기 모달 -->
+    <div v-if="showFullStoryModal" class="modal-overlay" @click="showFullStoryModal = false">
+      <div class="modal-content" @click.stop>
+        <div class="modal-header">
+          <h2>전체 이야기</h2>
+          <button @click="showFullStoryModal = false" class="btn-close">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-post-content">
+            <h3>{{ post.title }}</h3>
+            <div class="modal-post-info">
+              <span class="author">{{ post.author }}</span>
+              <span class="date">{{ formatDate(post.created_at) }}</span>
+            </div>
+          </div>
+          <div v-if="post.comments?.length > 0" class="modal-stories">
+            <span>{{ post.content }}</span>
+            <span v-for="comment in post.comments" :key="comment.id">
+              {{ comment.content }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -93,6 +126,7 @@ const userStore = useUserStore()
 const post = ref(null)
 const newStory = ref('')
 const isLoading = ref(false)
+const showFullStoryModal = ref(false)
 
 onMounted(async () => {
   if (!userStore.user) {
@@ -151,9 +185,9 @@ const handleAddComment = async () => {
   }
 }
 
-const handleEditComment = (comment) => {
-  newStory.value = comment.content
-}
+// const handleEditComment = (comment) => {
+//   newStory.value = comment.content
+// }
 
 const handleDeleteComment = async (commentId) => {
   if (confirm('이 다음 이야기를 삭제하시겠습니까?')) {
@@ -490,5 +524,171 @@ textarea:focus {
   font-size: 16px;
   font-weight: 500;
   margin: 0;
+}
+
+.no-remaining-stories {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.no-remaining-stories p {
+  color: #666;
+  margin: 0 0 20px 0;
+  font-size: 16px;
+}
+
+.btn-view-all {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--warning-color) 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  filter: brightness(1);
+}
+
+.btn-view-all:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  color: #333;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.modal-body {
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.modal-post-content {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-post-content h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 22px;
+}
+
+.modal-post-info {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.modal-post-info .author {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.modal-content {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.modal-stories h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.modal-stories {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.modal-story-content {
+  color: #555;
+  margin: 0 0 10px 0;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.modal-story-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #999;
+}
+
+.modal-story-date {
+  color: #999;
 }
 </style>
