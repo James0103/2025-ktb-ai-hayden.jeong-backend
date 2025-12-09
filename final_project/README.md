@@ -16,6 +16,12 @@ MVP: https://relay-story-frontend-production.up.railway.app<br>
 e-mail: test@gmail.com / test2@gmail.com<br>
 password: Test1234@<br>
 
+---
+### 업데이트 로그
+- 2025-12-09 : 스토리 엔딩 생성 함수 수정
+
+---
+
 ### 기술 스택
 - 백엔드 : FastAPI
 - DB: postgreSQL
